@@ -12,6 +12,7 @@ namespace FulfillmentCenterSoftware.Models
     public class StoragePlace
     {
         [Key] public int Id { get; set; }
+        [Required] public int RackId { get; set; }
         [Required] public Color Color { get; set; }
         [Required] public Zone Zone { get; set; }
     }

@@ -13,6 +13,13 @@ namespace FulfillmentCenterSoftware.Models
         [Key] public int Id { get; set; }
         [Required][MaxLength(50)] public string Name { get; set; } = null!;
         [Required] public int Quantity { get; set; }
+        [Required] public decimal Kg { get; set; }
+        [Required] public decimal Length { get; set; }
+        [Required] public decimal Height { get; set; }
+        [Required] public decimal Width { get; set; }
+        [Required] public decimal Price { get; set; }
+        public int? PiecesPerBox { get; set; }
+        public int? BoxesPerPallet { get; set; }
         [Required][MaxLength(300)] public string Description { get; set; } = null!;
         [Required][MaxLength(50)] public string ShortDescription { get; set; } = null!;
         [Required][MaxLength(50)] public string ProductBarcode { get; set; } = null!;

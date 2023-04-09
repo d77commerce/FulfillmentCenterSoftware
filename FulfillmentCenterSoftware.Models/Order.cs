@@ -22,7 +22,16 @@ namespace FulfillmentCenterSoftware.Models
         [Required] public bool AddBubbleWraps { get; set; } = false;
         [Required] public OrderStatus Status { get; set; }
         [Required] public int TraysNo { get; set; }
-        [Required] public string Instruction { get; set; } = null!;
-
+        [Required] public string Instruction { get; set; } = null!; 
+        [Required] public string ReceiverFirstName { get; set; } = null!;
+        [Required] public string ReceiverLastName { get; set; } = null!;
+        [Required] public string ReceiverPhone { get; set; } = null!;
+        [Required] public string ReceiverCountry { get; set; } = null!;
+        [Required] public string ReceiverCity { get; set; } = null!;
+        [Required] public string ReceiverStreet { get; set; } = null!;
+        public string? ReceiverAddressLine1 { get; set; }
+        public string? ReceiverAddressLine2 { get; set; }
+        [Required] public string ReceiverPostcode { get; set; } = null!;
+        public string? CustomerMessage { get; set; }
     }
 }

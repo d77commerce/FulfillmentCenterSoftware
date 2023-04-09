@@ -20,7 +20,11 @@ namespace FulfillmentCenterSoftware.Models
         [Required] [MaxLength(100)] public string? AddressLine1 { get; set; }
         [Required] [MaxLength(100)] public string? AddressLine2 { get; set; }
         [Required] [MaxLength(10)] public string Postcode { get; set; } = null!;
-        public virtual IEnumerable<Product>? Products { get; set; } = new List<Product>();
+        [Required][MaxLength(100)] public string Email { get; set; } = null!;
+        [Required][MaxLength(100)] public string PhoneNo { get; set; } = null!;
+        [MaxLength(100)] public string? WebSite { get; set; } 
+
+		public virtual IEnumerable<Product>? Products { get; set; } = new List<Product>();
 
     }
 }
