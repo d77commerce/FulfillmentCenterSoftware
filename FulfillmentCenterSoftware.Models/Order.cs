@@ -21,7 +21,8 @@ namespace FulfillmentCenterSoftware.Models
         [Required] public bool AddPaper { get; set; } = false;
         [Required] public bool AddBubbleWraps { get; set; } = false;
         [Required] public OrderStatus Status { get; set; }
-        [Required] public int TraysNo { get; set; }
+        public CourierListEnum Courier { get; set; }
+		[Required] public int TraysNo { get; set; }
         [Required] public string Instruction { get; set; } = null!; 
         [Required] public string ReceiverFirstName { get; set; } = null!;
         [Required] public string ReceiverLastName { get; set; } = null!;

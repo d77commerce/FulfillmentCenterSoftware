@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FulfillmentCenterSoftware.Models
-{
-    public class Shipping
-    {
-    }
+namespace FulfillmentCenterSoftware.Models.Enums
+{ public enum CourierListEnum
+	{
+		Econt, Evropat, ClickAndGrab
+	}
 }

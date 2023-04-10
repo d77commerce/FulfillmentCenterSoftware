@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FulfillmentCenterSoftware.Models
 {
-   public class Owner
+   public class Client
     {
         [Key] public int Id { get; set; }
         [Required][MaxLength(100)] public string CompanyName { get; set; } = null!;

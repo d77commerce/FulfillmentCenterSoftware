@@ -18,7 +18,8 @@ namespace FulfillmentCenterSoftware.Models
         [Required] public decimal Height { get; set; }
         [Required] public decimal Width { get; set; }
         [Required] public decimal Price { get; set; }
-        public int? PiecesPerBox { get; set; }
+        public decimal? Price10 { get; set; }
+		public int? PiecesPerBox { get; set; }
         public int? BoxesPerPallet { get; set; }
         [Required][MaxLength(300)] public string Description { get; set; } = null!;
         [Required][MaxLength(50)] public string ShortDescription { get; set; } = null!;
@@ -27,7 +28,10 @@ namespace FulfillmentCenterSoftware.Models
         [MaxLength(50)] public string? ProductCode { get; set; }
         [Required] public int ProducerId { get; set; }
         [ForeignKey(nameof(ProducerId))] public Producer Producer { get; set;}= null!;
-        [Required] public int OwnerId { get; set; }
-        [ForeignKey(nameof(OwnerId))] public Owner Owner { get; set; }= null!;
+        public string? PicUrl { get; set; }
+		[Required] public int OwnerId { get; set; }
+        [ForeignKey(nameof(OwnerId))] public Client Client { get; set; }= null!;
+        [Required] public int StoragePlaceId { get; set; }
+        [ForeignKey(nameof(StoragePlaceId))] public StoragePlace StoragePlace { get; set; }
     }
 }
