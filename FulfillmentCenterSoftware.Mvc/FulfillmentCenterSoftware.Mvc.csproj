@@ -22,4 +22,12 @@
     <ProjectReference Include="..\FulfillmentCenterSoftware.Core\FulfillmentCenterSoftware.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Home\Products.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Home\Products.cshtml" />
+  </ItemGroup>
+
 </Project>

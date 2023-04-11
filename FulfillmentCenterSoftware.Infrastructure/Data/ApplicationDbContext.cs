@@ -1,4 +1,5 @@
-﻿using FulfillmentCenterSoftware.Models;
+﻿using FulfillmentCenterSoftware.Infrastructure.Configuration;
+using FulfillmentCenterSoftware.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -14,6 +15,10 @@ namespace FulfillmentCenterSoftware.Infrastructure.Data
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
+			builder.ApplyConfiguration(new ProductConfiguration());
+			builder.ApplyConfiguration(new ClientConfiguration());
+			builder.ApplyConfiguration(new ProducerConfiguration());
+			builder.ApplyConfiguration(new StoragePlaceConfiguration());
 			base.OnModelCreating(builder);
 		}
 

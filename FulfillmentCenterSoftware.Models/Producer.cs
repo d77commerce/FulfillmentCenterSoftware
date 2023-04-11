@@ -14,7 +14,7 @@ namespace FulfillmentCenterSoftware.Models
 
         public string? Description { get; set; } 
 
-        public virtual IEnumerable<Product> Products { get; set; } = new List<Product>();
+        public virtual IEnumerable<Product>? Products { get; set; } = new List<Product>();
 
 
     }

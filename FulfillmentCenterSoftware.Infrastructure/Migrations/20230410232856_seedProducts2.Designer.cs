@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FulfillmentCenterSoftware.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230410180328_addTables")]
-    partial class addTables
+    [Migration("20230410232856_seedProducts2")]
+    partial class seedProducts2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,6 +115,42 @@ namespace FulfillmentCenterSoftware.Infrastructure.Migrations
                         .HasName("pk_clients");
 
                     b.ToTable("clients", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressLine1 = "City centre",
+                            AddressLine2 = "Tower Bridge",
+                            CompanyName = "Click and Grab ltd",
+                            CompanyNo = "123456",
+                            Country = "UK",
+                            Description = "Test Company",
+                            Email = "test@test.co.uk",
+                            PhoneNo = "+44 3454642390",
+                            Postcode = "EW23 3AS",
+                            Street = "34 Oniks",
+                            Town = "London",
+                            VatNo = "GB122345",
+                            WebSite = "https//clickandgrab.co.uk"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressLine1 = "City centre",
+                            AddressLine2 = "Tower Bridge",
+                            CompanyName = "Formo express ltd",
+                            CompanyNo = "9993456",
+                            Country = "UK",
+                            Description = "Test Company 2",
+                            Email = "test2@test.co.uk",
+                            PhoneNo = "+44 7998390",
+                            Postcode = "EW54 2AS",
+                            Street = "55 Ludvig",
+                            Town = "London",
+                            VatNo = "GB999345",
+                            WebSite = "https//formoexpress.co.uk"
+                        });
                 });
 
             modelBuilder.Entity("FulfillmentCenterSoftware.Models.Order", b =>
@@ -251,6 +287,20 @@ namespace FulfillmentCenterSoftware.Infrastructure.Migrations
                         .HasName("pk_producers");
 
                     b.ToTable("producers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Test Producer",
+                            Name = "Click & Grab Producing ltd"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Test producer 2",
+                            Name = "Formo Commerce ltd"
+                        });
                 });
 
             modelBuilder.Entity("FulfillmentCenterSoftware.Models.Product", b =>
@@ -266,33 +316,35 @@ namespace FulfillmentCenterSoftware.Infrastructure.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("boxes_per_pallet");
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("integer")
+                        .HasColumnName("client_id");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("character varying(300)")
                         .HasColumnName("description");
 
-                    b.Property<decimal>("Height")
-                        .HasColumnType("numeric")
-                        .HasColumnName("height");
+                    b.Property<int?>("HeightCm")
+                        .IsRequired()
+                        .HasColumnType("integer")
+                        .HasColumnName("height_cm");
 
-                    b.Property<decimal>("Kg")
-                        .HasColumnType("numeric")
+                    b.Property<double>("Kg")
+                        .HasColumnType("double precision")
                         .HasColumnName("kg");
 
-                    b.Property<decimal>("Length")
-                        .HasColumnType("numeric")
-                        .HasColumnName("length");
+                    b.Property<int?>("LengthCm")
+                        .IsRequired()
+                        .HasColumnType("integer")
+                        .HasColumnName("length_cm");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)")
                         .HasColumnName("name");
-
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("integer")
-                        .HasColumnName("owner_id");
 
                     b.Property<string>("PicUrl")
                         .HasColumnType("text")
@@ -340,20 +392,76 @@ namespace FulfillmentCenterSoftware.Infrastructure.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("short_description");
 
-                    b.Property<decimal>("Width")
-                        .HasColumnType("numeric")
-                        .HasColumnName("width");
+                    b.Property<int>("StoragePlaceId")
+                        .HasColumnType("integer")
+                        .HasColumnName("storage_place_id");
+
+                    b.Property<int?>("WidthCm")
+                        .IsRequired()
+                        .HasColumnType("integer")
+                        .HasColumnName("width_cm");
 
                     b.HasKey("Id")
                         .HasName("pk_products");
 
-                    b.HasIndex("OwnerId")
-                        .HasDatabaseName("ix_products_owner_id");
+                    b.HasIndex("ClientId")
+                        .HasDatabaseName("ix_products_client_id");
 
                     b.HasIndex("ProducerId")
                         .HasDatabaseName("ix_products_producer_id");
 
+                    b.HasIndex("StoragePlaceId")
+                        .HasDatabaseName("ix_products_storage_place_id");
+
                     b.ToTable("products", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BoxesPerPallet = 65,
+                            ClientId = 1,
+                            Description = "long description ! ! !",
+                            HeightCm = 21,
+                            Kg = 3.3580000000000001,
+                            LengthCm = 35,
+                            Name = "Test Product1",
+                            PicUrl = "http://clickandgrab.trakia.co.uk/wp-content/uploads/2020/05/clickandgrab.co_.uk-poster-2-2048x1006.jpg",
+                            PiecesPerBox = 12,
+                            Price = 2.10m,
+                            Price10 = 2.015m,
+                            ProducerId = 1,
+                            ProductBarcode = "1234567891",
+                            ProductCode = "c&g001",
+                            ProductStorageBarcode = "c&g100001",
+                            Quantity = 0,
+                            ShortDescription = "short description ! ! !",
+                            StoragePlaceId = 1,
+                            WidthCm = 10
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BoxesPerPallet = 65,
+                            ClientId = 2,
+                            Description = "long description ! ! !",
+                            HeightCm = 11,
+                            Kg = 4.3579999999999997,
+                            LengthCm = 45,
+                            Name = "Test Product2",
+                            PicUrl = "http://clickandgrab.trakia.co.uk/wp-content/uploads/2020/05/clickandgrab.co_.uk-poster-2-2048x1006.jpg",
+                            PiecesPerBox = 18,
+                            Price = 3.10m,
+                            Price10 = 3.015m,
+                            ProducerId = 2,
+                            ProductBarcode = "9234567891",
+                            ProductCode = "c&g002",
+                            ProductStorageBarcode = "c&g100002",
+                            Quantity = 0,
+                            ShortDescription = "short description ! ! !",
+                            StoragePlaceId = 2,
+                            WidthCm = 10
+                        });
                 });
 
             modelBuilder.Entity("FulfillmentCenterSoftware.Models.StoragePlace", b =>
@@ -381,6 +489,22 @@ namespace FulfillmentCenterSoftware.Infrastructure.Migrations
                         .HasName("pk_storage_places");
 
                     b.ToTable("storage_places", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Color = 0,
+                            RackId = 1,
+                            Zone = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Color = 2,
+                            RackId = 1,
+                            Zone = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -635,10 +759,10 @@ namespace FulfillmentCenterSoftware.Infrastructure.Migrations
                 {
                     b.HasOne("FulfillmentCenterSoftware.Models.Client", "Client")
                         .WithMany("Products")
-                        .HasForeignKey("OwnerId")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_products_clients_owner_id");
+                        .HasConstraintName("fk_products_clients_client_id");
 
                     b.HasOne("FulfillmentCenterSoftware.Models.Producer", "Producer")
                         .WithMany("Products")
@@ -647,9 +771,18 @@ namespace FulfillmentCenterSoftware.Infrastructure.Migrations
                         .IsRequired()
                         .HasConstraintName("fk_products_producers_producer_id");
 
+                    b.HasOne("FulfillmentCenterSoftware.Models.StoragePlace", "StoragePlace")
+                        .WithMany()
+                        .HasForeignKey("StoragePlaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_products_storage_places_storage_place_id");
+
                     b.Navigation("Client");
 
                     b.Navigation("Producer");
+
+                    b.Navigation("StoragePlace");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

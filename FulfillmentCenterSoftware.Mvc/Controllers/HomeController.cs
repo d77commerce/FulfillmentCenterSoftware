@@ -1,6 +1,7 @@
 ﻿using FulfillmentCenterSoftware.Mvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using FulfillmentCenterSoftware.Models;
 
 namespace FulfillmentCenterSoftware.Mvc.Controllers
 {
@@ -27,6 +28,12 @@ namespace FulfillmentCenterSoftware.Mvc.Controllers
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+		[HttpGet]
+		public IActionResult Add()
+        {
+            var model = new Product();
+			return View(model);
 		}
 	}
 }

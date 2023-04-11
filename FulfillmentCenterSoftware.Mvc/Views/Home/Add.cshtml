@@ -1,0 +1,11 @@
+﻿@model IEnumerable<FulfillmentCenterSoftware.Models.Product>
+
+
+<div>
+      @foreach (var product in Model)
+      {
+          <a>@product.Name</a>
+          <a>@product.Price</a>
+          <a>@product.Kg</a>
+      }
+</div>
