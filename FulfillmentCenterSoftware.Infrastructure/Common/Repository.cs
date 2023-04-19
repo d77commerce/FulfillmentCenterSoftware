@@ -17,7 +17,7 @@ namespace FulfillmentCenterSoftware.Infrastructure.Common
         }
         public T Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().Find(id);
         }
 
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)

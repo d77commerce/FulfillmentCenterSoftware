@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace FulfillmentCenterSoftware.Infrastructure.Common.Product
 {
-    internal interface IProductRepository
+    public interface IProductRepository:IRepository<Models.Product>
     {
+        void Update(Models.Product product);
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FulfillmentCenterSoftware.Models
 {
-    public class Product : IEnumerable
+    public class Product 
     {
         [Key] public int Id { get; set; }
         [Required][MaxLength(50)] public string Name { get; set; } = null!;
@@ -34,9 +34,6 @@ namespace FulfillmentCenterSoftware.Models
         [ForeignKey(nameof(ClientId))] public Client Client { get; set; }= null!;
         [Required] public int StoragePlaceId { get; set; }
         [ForeignKey(nameof(StoragePlaceId))] public StoragePlace StoragePlace { get; set; }
-        public IEnumerator GetEnumerator()
-        {
-	        throw new NotImplementedException();
-        }
+
     }
 }

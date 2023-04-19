@@ -1,0 +1,130 @@
+﻿@using FulfillmentCenterSoftware.Core.Models
+@model FulfillmentCenterSoftware.Core.Models.ProductViewModel
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<h1>
+    @ViewBag.companyName
+</h1>
+<form method="post" asp-action="ProductByClient" enctype="multipart/form-data">
+    <input asp-for="Product.Id" hidden />
+    <input asp-for="Product.PicUrl" hidden />
+    <input asp-for="Product.ClientId" hidden />
+
+    <div class="row">
+        <div class="col-10">
+            <div class="border-light p-3 mt-4 row">
+                @*
+                <h2>@(Model.Product.Id != 0 ? "Edit " : "Create ")Product</h2>
+                *@
+                <hr />
+                <div class="mb-3">
+                    <label asp-for="Product.Name"></label>
+                    <input asp-for="Product.Name" class="form-control" />
+                    <span asp-validation-for="Product.Name" class="text-bg-warning"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Product.Description"></label>
+                    <textarea asp-for="Product.Description" rows="3" class="form-control"></textarea>
+                    <span asp-validation-for="Product.Description" class="text-bg-warning"></span>
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="Product.Kg"></label>
+                    <input asp-for="Product.Kg" class="form-control" />
+                    <span asp-validation-for="Product.Kg" class="text-bg-warning"></span>
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="Product.Price"></label>
+                    <input asp-for="Product.Price" class="form-control" />
+                    <span asp-validation-for="Product.Price" class="text-bg-warning"></span>
+                </div>
+                <div class="mb-3 col-2">
+                    <label asp-for="Product.Price10"></label>
+                    <input asp-for="Product.Price10" class="form-control" />
+                    <span asp-validation-for="Product.Price10" class="text-bg-warning"></span>
+                </div>
+                <div class="mb-3 col-2">
+                    <label asp-for="Product.Price"></label>
+                    <input asp-for="Product.Price" class="form-control" />
+                    <span asp-validation-for="Product.Price" class="text-bg-warning"></span>
+                </div>
+                <div class="mb-3 col-2">
+                    <label asp-for="Product.BoxesPerPallet"></label>
+                    <input asp-for="Product.BoxesPerPallet" class="form-control" />
+                    <span asp-validation-for="Product.BoxesPerPallet" class="text-bg-warning"></span>
+                </div>
+                <div class="mb-3 col-2">
+                    <label asp-for="Product.PiecesPerBox"></label>
+                    <input asp-for="Product.PiecesPerBox" class="form-control" />
+                    <span asp-validation-for="Product.PiecesPerBox" class="text-bg-warning"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Product.PicUrl"></label>
+                    <input type="file" id="ValidUrl" name="file" class="form-control" />
+                </div>
+                @*<div class="mb-3 col-6">
+                    <label asp-for="Product.StoragePlaceId"></label>
+                    <select asp-for="Product.StoragePlaceId" asp-items="@Model.StoragePlaceItems" class="form-select">
+                        <option disabled selected>-- Select --</option>
+                    </select>
+                    <span asp-validation-for="Product.StoragePlaceId" class="text-bg-warning"></span>
+                </div>*@
+                @*<div class="mb-3 col-6">
+                <label asp-for="Product.CoverId"></label>
+                <select asp-for="Product.CoverId" asp-items="@Model.CoverTypeList" class="form-select">
+                <option disabled selected>-- Select Cover Type --</option>
+                </select>
+                <span asp-validation-for="Product.CoverId" class="text-bg-warning"></span>
+                </div>*@
+                <hr />
+                <div class="text-end">
+                    @*@if (Model.Product.Id != 0)
+                    {
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <a asp-controller="Home" asp-action="ProductByClient" class="btn btn-primary">Exit</a>
+                    }
+                    else
+                    {
+                        <button type="submit" onclick="return ValidateInput()" class="btn btn-primary">Create</button>
+                        <a asp-controller="Home" asp-action="ProductByClient" class="btn btn-primary">Exit</a>
+                    }*@
+                    <button type="submit" onclick="return ValidateInput()" class="btn btn-primary">Create</button>
+                    <a asp-controller="Home" asp-action="Add" class="btn btn-primary">Exit</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 pt-xl-4 text-center">
+
+            @*
+            <img src="@Model.Product.PicUrl" width="100%" style="border-radius: 5px; border: 1px solid cornsilk" />
+        *@
+        </div>
+    </div>
+
+</form>
+@section Scripts
+    {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ]
+        });
+    </script>
+    <script>
+        function ValidateInput() {
+            if (document.getElementById("ValidUrl").value == "") {
+                return confirm('Please upload an Image!')
+            }
+        }
+    </script>
+}
+

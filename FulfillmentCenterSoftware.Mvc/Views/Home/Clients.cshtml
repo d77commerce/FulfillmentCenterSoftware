@@ -1,0 +1,45 @@
+﻿@using FulfillmentCenterSoftware.Models
+@model IEnumerable<FulfillmentCenterSoftware.Core.Models.ClientViewModel>
+<style>
+
+</style>
+
+<div>
+    <table border="1" width="800"  style="border-color: blueviolet">
+        <tr>
+            <th>Company Name</th>
+            <th>Company No</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+        @foreach (var client in Model)
+        {
+            int num = client.Client.Id;
+            <tr>
+                <td>@client.Client.CompanyName</td>
+                <td>@client.Client.CompanyNo</td>
+                <td>
+
+                    <a asp-controller="Home" asp-action="ProductsByClient" asp-route-companyId="@num">
+                        <button type="button" class="btn btn-primary">Show all products </button>
+
+
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Home" asp-action="AddNewProduct" asp-route-clientId="@num">
+                        <button type="button" class="btn btn-primary">Add New Product</button>
+                    </a>
+                </td>
+
+            </tr>
+        }
+        <tr>
+            <td>
+                <div st></div> All active Clients
+            </td>
+
+        </tr>
+    </table>
+</div>

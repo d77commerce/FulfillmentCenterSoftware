@@ -1,11 +1,89 @@
-﻿@model IEnumerable<FulfillmentCenterSoftware.Models.Product>
+﻿
+@using FulfillmentCenterSoftware.Models
+@model IEnumerable<FulfillmentCenterSoftware.Core.Models.ProductViewModel>
+<style>
 
+</style>
 
 <div>
-      @foreach (var product in Model)
-      {
-          <a>@product.Name</a>
-          <a>@product.Price</a>
-          <a>@product.Kg</a>
-      }
+<table border="1" width="500" height="250" bgcolor="lightblue">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Kg</th>
+        <th>Client</th>
+            <th>Add New Product</th>
+    </tr>
+    @foreach (var product in Model)
+    {
+           
+        <tr>
+            <td>@product.Product.Name</td>
+            <td>@product.Product.Description</td>
+            <td>@product.Product.Kg</td>
+            <td>@product.Product.ClientId.ToString()</td>
+            <th>
+                <a asp-controller="Home" asp-action="AddNewProduct" asp-route-clientId="@product.Product.ClientId">
+                    <div class="text-center">
+                        <button  class="btn btn-primary">Edit</button>
+                    </div>
+     
+       
+                </a>
+            </th>
+        </tr>
+    }
+</table>
+</div>
+<div class="row pb-3">
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="row p-2">
+                <div class="col-12 p-1" style="border:whitesmoke; border-radius: 5px;">
+                    <div class="card">
+                        <img src="@product.Product.PicUrl" class="card-img-top rounded card-image" onclick="return confirm('Just Function - @product.Product.Name')" />
+                        <div class="card-body">
+                            <p class="card-title h5 text-bg-primary" style="border-radius: 5px"> &nbsp;@product.Product.Name</p>
+                            <p class="card-title  text-bg-info" style="border-radius: 5px"> &nbsp;Description: @product.Product.Description</p>
+                            <p class="card-title  text-bg-info" style="border-radius: 5px"> &nbsp; list price £ @product.Product.Price</p>
+                            <p class="card-title  text-bg-info" style="border-radius: 5px"> &nbsp;  
+                                @foreach (var client in product.ClienItems)
+                                {
+                                    <td> Client : @client.Text</td>
+                                }
+                            </p>
+
+                        </div>
+                        <div class="btn-info text-end"style="border-radius: 5px">
+                            <a asp-controller="Home" asp-action="Add" asp-route-productId="@product.Product.Id">
+                                <button class="btn btn-primary">More Info</button>
+                                &nbsp;
+                                <a asp-controller="Home" asp-action="Index" asp-route-productId="@product.Product.Id">
+                                    <button class="btn btn-primary">Buy now</button>
+
+                                </a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <a asp-controller="Home" asp-action="AddNewProduct" asp-route-clientId="@Model">
+        
+            <label  class="form-label">Client Id</label>
+            @*
+            <input asp-for="@Model.FirstOrDefault().Product.ClientId"/>
+            *@
+            @*<span asp-validation-for="@Model.FirstOrDefault().Product.ClientId" class="text-bg-warning"></span>
+            *@
+
+            <div class="text-center">
+                <button  class="btn btn-primary">Add New Product</button>
+            </div>
+     
+       
+   </a>
 </div>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<FulfillmentCenterSoftware.Core.Models.ProductViewModel>
+<style>
+
+    </style>
+<h1 class="align-content-center">@Model.FirstOrDefault().ClienItems.FirstOrDefault().Text </h1>
+
+<div>
+    <div>
+       
+    <table border="1" width="500" height="250" bgcolor="lightblue">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Kg</th>
+       
+        </tr>
+        @foreach (var product in Model)
+        {
+           
+            <tr>
+                <td>@product.Product.Name</td>
+                <td>@product.Product.Description</td>
+                <td>@product.Product.Kg</td>
+           
+            </tr>
+        }
+    </table>
+   
+        <a asp-controller="Home" asp-action="AddNewProduct" asp-route-clientId="@Model.FirstOrDefault().Product.ClientId">
+            <button type="button" class="btn btn-primary">Add products</button>
+
+        </a>
+    </div>
+</div>
